@@ -1,4 +1,4 @@
-package br.com.tcessin.demo;
+package br.com.tcessin.forum;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
