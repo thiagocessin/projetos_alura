@@ -1,13 +1,23 @@
 package br.com.tcessin.forum.controller.form;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 import br.com.tcessin.forum.modelo.Curso;
 import br.com.tcessin.forum.modelo.Topico;
 import br.com.tcessin.forum.repository.CursoRepository;
 
 public class TopicoForm {
 
+	@NotNull @NotEmpty 	@Length(min = 5)
 	private String titulo;
+	
+	@NotNull @NotEmpty
 	private String mensagem;
+	
+	@NotNull @NotEmpty
 	private String nomeCurso;
 
 	public String getTitulo() {
