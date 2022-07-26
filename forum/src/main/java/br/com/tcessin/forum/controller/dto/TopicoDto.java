@@ -8,10 +8,13 @@ import br.com.tcessin.forum.modelo.Topico;
 
 public class TopicoDto {
 
-	private Long id;
-	private String titulo;
-	private String mensagem;
-	private LocalDateTime dataCriacao;
+	protected Long id;
+	protected String titulo;
+	protected String mensagem;
+	protected LocalDateTime dataCriacao;
+	
+	
+	public TopicoDto() {}
 	
 	public TopicoDto(Topico topico) {
 		
