@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
 @Configuration
@@ -39,7 +40,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter{
 			.antMatchers(HttpMethod.POST, "/auth").permitAll()
 			.anyRequest().authenticated()
 			.and().csrf().disable()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);//"avisa" ao spring para não criar sessão, será usado stateless
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)//"avisa" ao spring para não criar sessão, será usado stateless
+			.and().addFilterBefore(new AutenticacaoViaTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 	
 	//configurações de recursos estáticos (JS, css, imagem)
