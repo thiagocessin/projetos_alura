@@ -21,6 +21,9 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private AutenticacaoService autenticacaoService;
 	
+	@Autowired
+	private TokenService tokenService;
+	
 	
 	//método para configurar autenticação (usuários)
 	@Override
@@ -41,7 +44,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter{
 			.anyRequest().authenticated()
 			.and().csrf().disable()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)//"avisa" ao spring para não criar sessão, será usado stateless
-			.and().addFilterBefore(new AutenticacaoViaTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+			.and().addFilterBefore(new AutenticacaoViaTokenFilter(tokenService), UsernamePasswordAuthenticationFilter.class);
 	}
 	
 	//configurações de recursos estáticos (JS, css, imagem)
