@@ -32,3 +32,5 @@ hs_err_pid*
 ##Eclipse
 .metadata
 util/
+golang/workspace/go/bin
+golang/workspace/go/pkg
