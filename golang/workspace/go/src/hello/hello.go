@@ -8,10 +8,9 @@ import (
 
 func main() {
 
-	exibeNomes()
-	//exibeIntroducao()
+	exibeIntroducao()
 	for {
-		//	exibeMenu()
+		exibeMenu()
 
 		switch leComando() {
 		case 1:
@@ -57,10 +56,12 @@ func exibeIntroducao() {
 func iniciarMonitoramento() {
 	fmt.Println("Monitorando")
 
-	var sites [4]string
+	sites := []string{"https://www.alura.com.br", "https://www.google.com"}
 
-	sites[0] = "https://www.alura.com.br"
-	sites[1] = "https://www.google.com"
+	for i, site := range sites {
+
+		fmt.Println(site, " indice ", i)
+	}
 
 	site := "https://www.alura.com.br"
 
@@ -72,11 +73,4 @@ func iniciarMonitoramento() {
 		fmt.Println("Erro status:", resp.StatusCode)
 	}
 
-}
-
-func exibeNomes() {
-
-	nomes := []string{"nome1", "nome2", "nome3"}
-
-	fmt.Println(nomes)
 }
