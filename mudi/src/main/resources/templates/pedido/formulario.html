@@ -1,16 +1,14 @@
 <html>
 
-<head>
-	<meta charset='utf-8'>
-	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
-	<title>Page Title</title>
-	<meta name='viewport' content='width=device-width, initial-scale=1'>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-	<script src='main.js'></script>
+<head th:replace="~{base::head}">
+
 </head>
 
 <body>
+	
+
+<div th:replace="~{base::logo}"></div>
+
 	<div class="container">
 
 		<div class="container-fluid bg-dark text-light p-5">
@@ -18,25 +16,27 @@
 		</div>
 
 
-		<div class="card mt-3" >
-			<form th:object="${requisicaoNovoPedido}" class ="card-body" action="/pedido/novo" method="POST">
+		<div class="card mt-3">
+			<form th:object="${requisicaoNovoPedido}" class="card-body" action="/pedido/novo" method="POST">
 				<div class="form-group">
 					<label for="nomeProduto">Produto</label>
-					<input th:field="*{nomeProduto}" th:errorClass="is-invalid" class="form-control" placeholder="Digite o nome do produto" />
+					<input th:field="*{nomeProduto}" th:errorClass="is-invalid" class="form-control"
+						placeholder="Digite o nome do produto" />
 					<small>Informe o nome do produto</small>
-					
+
 					<div th:errors="*{nomeProduto}" class="invalid-feedback">
-					Erros do nome do produto
+						Erros do nome do produto
 					</div>
 
 				</div>
 
 				<div class="form-group">
 					<label for="urlProduto">URL Produto</label>
-					<input th:field="*{urlProduto}"  th:errorClass="is-invalid" class="form-control" placeholder="Url do produto" />
+					<input th:field="*{urlProduto}" th:errorClass="is-invalid" class="form-control"
+						placeholder="Url do produto" />
 					<small>Procure o produto em um site o cole a URL da página aqui</small>
 					<div th:errors="*{urlProduto}" class="invalid-feedback">
-					Erros da URL
+						Erros da URL
 					</div>
 
 				</div>
@@ -44,21 +44,21 @@
 
 				<div class="form-group">
 					<label for="urlImagem">Imagem</label>
-					<input th:field="*{urlImagem}" class="form-control" th:errorClass="is-invalid" placeholder="Url da Imagem" />
+					<input th:field="*{urlImagem}" class="form-control" th:errorClass="is-invalid"
+						placeholder="Url da Imagem" />
 					<small></small>
-					<div th:errors="*{urlImagem}" class="invalid-feedback" >
-					Erros da URL da imagem
+					<div th:errors="*{urlImagem}" class="invalid-feedback">
+						Erros da URL da imagem
 					</div>
 
 				</div>
 
 				<div class="form-group">
 					<label for="descricao">Descrição</label>
-					<textarea class="form-control" th:errorClass="is-invalid"
-						th:field="*{descricao}"
+					<textarea class="form-control" th:errorClass="is-invalid" th:field="*{descricao}"
 						placeholder="Adicione detalhes importantes para ajudar o comprador"></textarea>
-						<div th:errors="*{descricao}" class="invalid-feedback">
-					Erros descrição
+					<div th:errors="*{descricao}" class="invalid-feedback">
+						Erros descrição
 					</div>
 
 				</div>
