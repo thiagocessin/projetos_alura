@@ -3,6 +3,7 @@ package br.com.tcessin.mudi.dto;
 import javax.validation.constraints.NotBlank;
 
 import br.com.tcessin.mudi.model.Pedido;
+import br.com.tcessin.mudi.model.StatusPedido;
 
 public class RequisicaoNovoPedido {
 
@@ -57,6 +58,7 @@ public class RequisicaoNovoPedido {
 		pedido.setNomeProduto(nomeProduto);
 		pedido.setUrlImagem(urlImagem);
 		pedido.setUrlProduto(urlProduto);
+		pedido.setStatusPedido(StatusPedido.AGUARDANDO);
 		
 		return pedido;
 	}
