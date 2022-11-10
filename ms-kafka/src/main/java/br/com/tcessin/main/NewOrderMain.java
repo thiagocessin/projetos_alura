@@ -3,6 +3,7 @@ package br.com.tcessin.main;
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 
+import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -16,8 +17,8 @@ public class NewOrderMain {
 
 		String value = "12133,114324, new_MSG";
 		ProducerRecord<String, String> producerRecord = new ProducerRecord<>("ECOMMERCE_NEW_ORDER", 0, value, value);
-
-		producer.send(producerRecord, (data, ex) -> {
+		
+		Callback callBack = (data, ex) -> {
 
 			if (ex != null) {
 				ex.printStackTrace();
@@ -27,7 +28,14 @@ public class NewOrderMain {
 
 			System.out.println("SUCESSO: Topic: " + data.topic() + ":::/partition" + data.partition() + "/offset"
 					+ data.offset() + "/timestamp" + data.timestamp());
-		}).get();
+		};
+
+		String email = "Welcome! we are processing your order";
+		ProducerRecord<String, String> emailRecord = new ProducerRecord<>("ECOMMERCE_SEND_EMAIL", email,email);
+		
+		
+		producer.send(producerRecord, callBack).get();
+		producer.send(emailRecord, callBack).get();
 
 	}
 
