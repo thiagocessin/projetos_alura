@@ -4,7 +4,10 @@ import br.com.alura.alurator.playground.controle.Controle;
 
 public class TesteInstaciaObjeto {
 
-	public static void main(String[] args) throws ClassNotFoundException {
+	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+		
+		//url - /controle/lista
+		
 		
 		Class<Controle> controleClass1 = Controle.class;
 		
@@ -14,6 +17,11 @@ public class TesteInstaciaObjeto {
 		Class<?> controleClasse3 = Class.forName("br.com.alura.alurator.playground.controle.Controle");
 		
 		
+		Object objetoControle = controleClass1.newInstance();
+		
+		
+		
+		System.out.println(objetoControle instanceof Controle);
 	}
 
 }
