@@ -21,6 +21,7 @@ public class Alurator {
 				.invocar();
 		System.out.println(instanciaControle);
 		
+		
 		return null;
 	}
 }
