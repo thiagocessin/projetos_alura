@@ -1,6 +1,7 @@
 package br.com.alura.alurator;
 
-import java.lang.reflect.Constructor;
+import br.com.alura.alurator.protocolo.Request;
+import br.com.alura.alurator.reflexao.Reflexao;
 
 public class Alurator {
 
@@ -13,24 +14,13 @@ public class Alurator {
 	public Object executa(String url) {
 
 		// /produto/lista
+		Request request = new Request(url);
+		String nomeControle = request.getNomeControle();
 
-		String[] partesUrl = url.replaceFirst("/", "").split("/");
-
-		String nomeControle = Character.toUpperCase(partesUrl[0].charAt(0)) +
-				partesUrl[0].substring(1) + "Controller";
-
-		try {
-			Class<?> classeControle = Class.forName(pacoteBase + nomeControle);
-			Object instanciaControle = classeControle.newInstance();
-			
-			
-			System.out.println(instanciaControle);
-
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
-
+		Object instanciaControle = new Reflexao().refleteClasse(pacoteBase + nomeControle).getConstrutorPadrao()
+				.invocar();
+		System.out.println(instanciaControle);
+		
 		return null;
 	}
 }
