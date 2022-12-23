@@ -24,4 +24,10 @@ public class ManipuladorClasse {
 		}
 	}
 
+	public ManipuladorObjeto criaInstancia() {
+		Object instancia = getConstrutorPadrao().invocar();
+		return new ManipuladorObjeto(instancia);
+		
+	}
+
 }
