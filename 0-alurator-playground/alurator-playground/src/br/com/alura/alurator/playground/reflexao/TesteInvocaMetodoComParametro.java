@@ -12,9 +12,9 @@ public class TesteInvocaMetodoComParametro {
 		Constructor<?> construtorPadrao = controleClasse.getDeclaredConstructor();
 		Object controle = construtorPadrao.newInstance();
 
-		Method m = controleClasse.getDeclaredMethod("metodoControle2");
+		Method m = controleClasse.getDeclaredMethod("metodoControle2", String.class, Integer.class);
 
-		Object retorno = m.invoke(controle);
+		Object retorno = m.invoke(controle, "TESTE 1",  10);
 
 		System.out.println(retorno);
 

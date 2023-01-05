@@ -25,7 +25,7 @@ public class Controle {
 	public void metodoControle2(String p1) {
 
 		System.out.println("Controle.metodoControle2(String p1)");
-		System.out.println("P1" + p1);
+		System.out.println("Parâmetro: " + p1);
 	}
 
 	public void metodoControle2(String p1, String p2) {

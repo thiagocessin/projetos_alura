@@ -1,6 +1,7 @@
 package br.com.alura.alurator.reflexao;
 
 import java.lang.reflect.Method;
+import java.util.Map;
 
 public class ManipuladorObjeto {
 
@@ -12,7 +13,7 @@ public class ManipuladorObjeto {
 		
 	}
 
-	public ManipuladorMetodo getMetodo(String nomeMetodo) {
+	public ManipuladorMetodo getMetodo(String nomeMetodo, Map<String, Object> params) {
 		
 		try {
 			Method metodo = instancia.getClass().getDeclaredMethod(nomeMetodo);
