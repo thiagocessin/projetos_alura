@@ -5,6 +5,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiFunction;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class ManipuladorMetodo {
@@ -12,6 +14,9 @@ public class ManipuladorMetodo {
 	private Object instancia;
 	private Method metodo;
 	private Map<String, Object> mapParams;
+	
+    private BiFunction<Method, InvocationTargetException, Object> tratamentoExcecao;
+
 
 	public ManipuladorMetodo(Object instancia, Method metodo, Map<String, Object> mapParams) {
 		this.instancia = instancia;
@@ -31,9 +36,23 @@ public class ManipuladorMetodo {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} catch (InvocationTargetException e) {
+			
+			 // tratamento especial e customizado da exceção.
+            if (tratamentoExcecao != null) {
+                return tratamentoExcecao.apply(metodo, e);
+            }
+
+			
 			e.printStackTrace();
 			throw new RuntimeException("Erro no método", e);
 		}
 	}
+
+	public ManipuladorMetodo comTratamentoDeExcessao(
+			BiFunction<Method, InvocationTargetException, Object> tratamentoExcecao) {
+		this.tratamentoExcecao = tratamentoExcecao;
+		return this;
+	}
+
 
 }
