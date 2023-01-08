@@ -2,6 +2,7 @@ package br.com.alura.alurator;
 
 import java.util.Map;
 
+import br.com.alura.alurator.conversor.ConversorXml;
 import br.com.alura.alurator.protocolo.Request;
 import br.com.alura.alurator.reflexao.Reflexao;
 
@@ -34,8 +35,11 @@ public class Alurator {
 							})
 							.invocar();
 		
-		
 		System.out.println(retornoMetodo);
+
+		retornoMetodo = new ConversorXml().converte(retornoMetodo);
+		
+		
 		
 		return retornoMetodo;
 	}
