@@ -2,7 +2,6 @@ package br.com.alura.estoque.modelo;
 
 import br.com.alura.alurator.conversor.anotacoes.NomeTagXml;
 
-@NomeTagXml("product")
 public class Produto {
 	
 	@NomeTagXml("name")

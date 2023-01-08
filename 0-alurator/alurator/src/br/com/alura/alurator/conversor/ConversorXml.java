@@ -27,18 +27,18 @@ public class ConversorXml {
 
 				xmlBuilder.append("</lista>");
 			} else {
+				NomeTagXml anotacaoClasse = classeObjeto.getDeclaredAnnotation(NomeTagXml.class);
 
-				//String nomeClasse = classeObjeto.getName();
-				
-				String nomeClasse =classeObjeto.getDeclaredAnnotation(NomeTagXml.class).value();
+				String nomeClasse = anotacaoClasse == null ? classeObjeto.getSimpleName().toLowerCase()
+						: anotacaoClasse.value();
 
 				xmlBuilder.append("<" + nomeClasse + ">");
 
 				for (Field atributo : classeObjeto.getDeclaredFields()) {
 					atributo.setAccessible(true);
-					String nomeAtributo =  atributo.getDeclaredAnnotation(NomeTagXml.class).value();
+					NomeTagXml anotacaoAtributo = atributo.getDeclaredAnnotation(NomeTagXml.class);
+					String nomeAtributo = anotacaoAtributo == null ? atributo.getName() : anotacaoAtributo.value();
 
-					//String nomeAtributo = atributo.getName();
 					Object valorAtributo = atributo.get(objeto);
 
 					xmlBuilder.append("<" + nomeAtributo + ">");
