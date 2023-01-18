@@ -4,12 +4,16 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Parameter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
 public class ContainerIoC {
 
+	private Map<Class<?>, Class<?>> mapaDeTipos = new HashMap<>();
+	
 	public Object getInstancia(Class<?> tipoFonte) {
 		Stream<Constructor<?>> construtores = Stream.of(tipoFonte.getDeclaredConstructors());
 
