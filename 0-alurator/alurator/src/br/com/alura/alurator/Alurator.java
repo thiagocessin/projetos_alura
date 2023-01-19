@@ -50,4 +50,9 @@ public class Alurator {
 		
 		return retornoMetodo;
 	}
+
+	public void registra(Class<?> tipoFonte, Class<?> tipoDestino) {
+		container.registra(tipoFonte, tipoDestino);
+		
+	}
 }

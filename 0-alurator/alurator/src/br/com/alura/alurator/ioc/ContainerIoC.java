@@ -15,6 +15,13 @@ public class ContainerIoC {
 	private Map<Class<?>, Class<?>> mapaDeTipos = new HashMap<>();
 	
 	public Object getInstancia(Class<?> tipoFonte) {
+
+		Class<?> tipoDestino = mapaDeTipos.get(tipoFonte);
+		
+		if(tipoDestino != null) {
+			return getInstancia(tipoDestino);
+		}
+		
 		Stream<Constructor<?>> construtores = Stream.of(tipoFonte.getDeclaredConstructors());
 
 		Optional<Constructor<?>> construtorPadrao = construtores
@@ -46,6 +53,12 @@ public class ContainerIoC {
 			throw new RuntimeException();
 		}
 
+	}
+
+	public void registra(Class<?> tipoFonte, Class<?> tipoDestino) {
+		
+		
+		
 	}
 
 }
