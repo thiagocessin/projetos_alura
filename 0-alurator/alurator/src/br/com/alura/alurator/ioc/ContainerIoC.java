@@ -55,10 +55,26 @@ public class ContainerIoC {
 
 	}
 
-	public void registra(Class<?> tipoFonte, Class<?> tipoDestino) {
-		
-		
-		
+	public <T, K extends T> void registra(Class<T> tipoFonte, Class<K> tipoDestino) {
+		mapaDeTipos.put(tipoFonte, tipoDestino);
 	}
+
+	private boolean verificaCompatibilidade(Class<?> tipoFonte, Class<?> tipoDestino) {
+		return tipoFonte.isAssignableFrom(tipoDestino);
+	}
+
+	//verificação na raça
+//	private boolean verificaCompatibilidade(Class<?> tipoFonte, Class<?> tipoDestino) {
+//		boolean compativel;
+//
+//		if (tipoFonte.isInterface()) {
+//			compativel = Stream.of(tipoDestino.getInterfaces())
+//					.anyMatch(interfaceImplementada -> interfaceImplementada.equals(tipoFonte));
+//		} else {
+//			compativel = tipoDestino.getSuperclass().equals(tipoFonte) || tipoDestino.equals(tipoFonte);
+//		}
+//
+//		return compativel;
+//	}
 
 }
