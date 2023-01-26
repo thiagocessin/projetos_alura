@@ -2,10 +2,10 @@ package threads;
 
 public class Lista {
 
-	private String[] elementos = new String[100];
+	private String[] elementos = new String[1000];
 	private int indice = 0;
 
-	public void adicionaElementos(String elemento) {
+	public synchronized void adicionaElementos(String elemento) {
 		this.elementos[indice] = elemento;
 		this.indice++;
 	}
